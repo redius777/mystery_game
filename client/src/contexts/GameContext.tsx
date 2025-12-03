@@ -54,55 +54,55 @@ interface GameContextType {
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 const INITIAL_TIMER = {
-  intro: 300, // 5 min
+  intro: 300, // 5分
   character_selection: 0,
-  phase1_interrogation: 600, // 10 min
-  evidence_reveal: 480, // 8 min
-  free_discussion: 900, // 15 min
-  phase2_interrogation: 420, // 7 min
-  voting: 300, // 5 min
+  phase1_interrogation: 600, // 10分
+  evidence_reveal: 480, // 8分
+  free_discussion: 900, // 15分
+  phase2_interrogation: 420, // 7分
+  voting: 300, // 5分
   conclusion: 0
 };
 
 const CHARACTERS: Record<CharacterId, Character> = {
   emilia: {
     id: "emilia",
-    name: "Emilia Rossi",
-    role: "Art Appraiser",
+    name: "エミリア・ロッシ",
+    role: "美術品鑑定士",
     age: 35,
-    description: "Sophisticated and calculating. Victor's former business partner who lost a fortune due to his betrayal.",
-    secret: "Possesses documents proving Victor's fraud. Was planning to sue him.",
-    objective: "Recover your reputation and financial loss. Hide your motive for revenge.",
+    description: "洗練された計算高い女性。ヴィクターの元ビジネスパートナーだが、彼の裏切りにより巨額の損失を被った。",
+    secret: "ヴィクターの詐欺を証明する書類を持っている。彼を告訴する準備をしていた。",
+    objective: "名声と財産を取り戻すこと。復讐の動機を隠し通すこと。",
     image: "/assets/character_emilia.png"
   },
   james: {
     id: "james",
-    name: "James Wilson",
-    role: "Lawyer",
+    name: "ジェームス・ウィルソン",
+    role: "弁護士",
     age: 42,
-    description: "Intellectual and cautious. Victor's legal advisor who knows all his dirty secrets.",
-    secret: "Beneficiary in Victor's will. Also took bribes from Victor's victims.",
-    objective: "Secure the inheritance and avoid legal implication in Victor's crimes.",
+    description: "知的で慎重。ヴィクターの法務顧問であり、彼の汚い秘密をすべて知っている。",
+    secret: "ヴィクターの遺言書の受取人である。また、ヴィクターの被害者たちから賄賂を受け取っていた。",
+    objective: "遺産を確保し、ヴィクターの犯罪への法的関与を隠蔽すること。",
     image: "/assets/character_james.png"
   },
   lilia: {
     id: "lilia",
-    name: "Lilia Chen",
-    role: "Secretary",
+    name: "リリア・チェン",
+    role: "秘書",
     age: 28,
-    description: "Young and efficient. Victor's secretary who hides a deep resentment.",
-    secret: "Daughter of a victim of Victor's fraud. Her father committed suicide.",
-    objective: "Avenge her father's death. Collect evidence of Victor's crimes.",
+    description: "若く有能な秘書。しかし、その内には深い恨みを隠している。",
+    secret: "ヴィクターの詐欺被害者の娘。父親はヴィクターのせいで自殺した。",
+    objective: "父の死の復讐を果たすこと。ヴィクターの犯罪の証拠を集めること。",
     image: "/assets/character_lilia.png"
   },
   marcus: {
     id: "marcus",
-    name: "Marcus Gray",
-    role: "Captain",
+    name: "マーカス・グレイ",
+    role: "船長",
     age: 55,
-    description: "Authoritative and stern. The ship's captain with a strong sense of justice.",
-    secret: "His best friend (Victor's son) was framed by Victor and is in jail.",
-    objective: "Clear his friend's name. He needs money to help him.",
+    description: "威厳があり厳格。強い正義感を持つこの船の船長。",
+    secret: "親友（ヴィクターの息子）がヴィクターに罪を着せられ、投獄されている。",
+    objective: "親友の汚名を晴らすこと。彼を救うための資金が必要。",
     image: "/assets/character_marcus.png"
   }
 };
@@ -112,9 +112,9 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [timer, setTimer] = useState(INITIAL_TIMER.intro);
   const [selectedCharacter, setSelectedCharacter] = useState<CharacterId | null>(null);
   const [evidence, setEvidence] = useState<Evidence[]>([
-    { id: "poison_vial", name: "Empty Vial", description: "Found in the trash bin near the kitchen. Traces of cyanide.", revealed: false },
-    { id: "will_copy", name: "Copy of Will", description: "A draft of a new will, disinheriting everyone.", revealed: false },
-    { id: "threatening_letter", name: "Threatening Note", description: "Found in Victor's pocket. 'You will pay for what you did.'", revealed: false }
+    { id: "poison_vial", name: "空の小瓶", description: "キッチンのゴミ箱で発見された。青酸カリの痕跡がある。", revealed: false },
+    { id: "will_copy", name: "遺言書の写し", description: "新しい遺言書の下書き。全員への遺産相続を無効にする内容。", revealed: false },
+    { id: "threatening_letter", name: "脅迫状", description: "ヴィクターのポケットから発見された。「お前のしたことの報いを受けさせる」と書かれている。", revealed: false }
   ]);
   const [votes, setVotes] = useState<Record<CharacterId, number>>({
     emilia: 0, james: 0, lilia: 0, marcus: 0

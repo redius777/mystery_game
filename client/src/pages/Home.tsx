@@ -11,15 +11,15 @@ function IntroPhase() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] text-center space-y-8 animate-in fade-in duration-1000">
       <h1 className="text-6xl md:text-8xl font-display text-primary text-glow mb-4">
-        Murder on the<br/>Queen Artemis
+        豪華客船での<br/>密室殺人
       </h1>
       <p className="text-xl md:text-2xl font-body max-w-2xl text-muted-foreground leading-relaxed">
-        A luxurious voyage turns into a nightmare. <br/>
-        One victim. Four suspects. Fifty minutes to find the truth.
+        優雅な船旅は悪夢へと変わった。<br/>
+        一人の被害者。四人の容疑者。真実を見つけるための時間は50分。
       </p>
       <div className="pt-8">
         <DecoButton size="lg" onClick={startGame} className="text-xl px-12 py-6">
-          Enter the Mystery
+          ミステリーを始める
         </DecoButton>
       </div>
     </div>
@@ -30,7 +30,7 @@ function CharacterSelectionPhase() {
   const { characters, selectCharacter } = useGame();
   return (
     <div className="space-y-8 animate-in slide-in-from-bottom-10 duration-700">
-      <h2 className="text-4xl font-display text-center text-primary mb-12">Select Your Persona</h2>
+      <h2 className="text-4xl font-display text-center text-primary mb-12">あなたの役割を選択</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {Object.values(characters).map((char) => (
           <div key={char.id} 
@@ -64,7 +64,7 @@ function GameHUD() {
     <div className="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
       <div className="container flex justify-between items-center h-16">
         <div className="flex items-center gap-4">
-          <span className="font-display text-primary text-xl">Queen Artemis</span>
+          <span className="font-display text-primary text-xl">クイーン・アルテミス号</span>
           <div className="h-6 w-px bg-primary/20"></div>
           <span className="font-sans text-xs tracking-widest text-muted-foreground">{phaseName}</span>
         </div>
@@ -76,7 +76,7 @@ function GameHUD() {
         <div className="flex items-center gap-4">
           {selectedCharacter && (
             <div className="flex items-center gap-2">
-              <span className="text-sm font-sans text-muted-foreground hidden md:inline">Playing as:</span>
+              <span className="text-sm font-sans text-muted-foreground hidden md:inline">あなたの役:</span>
               <span className="font-display text-primary">{characters[selectedCharacter].name}</span>
             </div>
           )}
@@ -97,17 +97,17 @@ function GameplayPhase() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column: My Info */}
         <div className="lg:col-span-1 space-y-6">
-          <DecoCard title="My Dossier">
+          <DecoCard title="調査資料">
             <div className="space-y-4">
               <img src={myChar.image} alt={myChar.name} className="w-full h-48 object-cover rounded border border-primary/20 mb-4" />
               <div>
-                <h4 className="font-sans text-xs uppercase text-muted-foreground mb-1">Secret</h4>
+                <h4 className="font-sans text-xs uppercase text-muted-foreground mb-1">秘密</h4>
                 <p className="font-body text-sm italic text-destructive/80 bg-destructive/10 p-3 rounded border border-destructive/20">
                   {myChar.secret}
                 </p>
               </div>
               <div>
-                <h4 className="font-sans text-xs uppercase text-muted-foreground mb-1">Objective</h4>
+                <h4 className="font-sans text-xs uppercase text-muted-foreground mb-1">目的</h4>
                 <p className="font-body text-sm text-primary/80">
                   {myChar.objective}
                 </p>
@@ -126,7 +126,7 @@ function GameplayPhase() {
               
               <div className="prose prose-invert max-w-none">
                 {currentPhase === "phase1_interrogation" && (
-                  <p>Introduce yourself to the other passengers. Establish your alibi for the time of the murder (23:30 - 00:00). Be careful not to reveal your secret yet.</p>
+                  <p>他の乗客に自己紹介をしてください。事件発生時刻（23:30 - 00:00）のアリバイを主張しましょう。まだ自分の秘密を明かさないように注意してください。</p>
                 )}
                 {currentPhase === "evidence_reveal" && (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -136,13 +136,13 @@ function GameplayPhase() {
                              e.revealed ? "border-primary bg-primary/5" : "border-muted bg-muted/50 hover:border-primary/50")}
                            onClick={() => revealEvidence(e.id)}>
                         <h4 className="font-display text-lg mb-2">{e.revealed ? e.name : "???"}</h4>
-                        <p className="text-sm text-muted-foreground">{e.revealed ? e.description : "Click to examine evidence"}</p>
+                        <p className="text-sm text-muted-foreground">{e.revealed ? e.description : "クリックして証拠を調べる"}</p>
                       </div>
                     ))}
                   </div>
                 )}
                 {currentPhase === "free_discussion" && (
-                  <p>Discuss the evidence. Question inconsistencies in others' stories. Form your theories.</p>
+                  <p>証拠について議論してください。他のプレイヤーの話の矛盾点を追及しましょう。誰が犯人か推理を組み立ててください。</p>
                 )}
                 {currentPhase === "voting" && (
                   <div className="grid grid-cols-2 gap-4">
@@ -151,7 +151,7 @@ function GameplayPhase() {
                               onClick={() => castVote(char.id)}
                               className="p-4 border border-primary/30 hover:bg-primary/10 text-left transition-colors rounded">
                         <span className="font-display text-lg block">{char.name}</span>
-                        <span className="text-xs text-muted-foreground uppercase">Accuse this suspect</span>
+                        <span className="text-xs text-muted-foreground uppercase">この容疑者を告発する</span>
                       </button>
                     ))}
                   </div>
@@ -161,7 +161,7 @@ function GameplayPhase() {
 
             <div className="flex justify-end pt-8">
               <DecoButton onClick={advancePhase}>
-                {currentPhase === "voting" ? "Reveal Truth" : "Next Phase"}
+                {currentPhase === "voting" ? "真実を明かす" : "次のフェーズへ"}
               </DecoButton>
             </div>
           </DecoCard>
@@ -175,15 +175,15 @@ function ConclusionPhase() {
   const { resetGame } = useGame();
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-8 animate-in zoom-in duration-500">
-      <h2 className="text-5xl font-display text-primary mb-4">The Truth Revealed</h2>
+      <h2 className="text-5xl font-display text-primary mb-4">真実は明かされた</h2>
       <div className="max-w-2xl bg-card/50 p-8 border border-primary/30 rounded backdrop-blur-sm">
         <p className="text-lg font-body leading-relaxed mb-6">
-          The murderer was <strong>Lilia Chen</strong>. Driven by revenge for her father's death, she poisoned Victor's drink.
-          However, James Wilson had already altered the will, and Marcus Gray was planning his own move.
-          On this ship, everyone is guilty of something.
+          犯人は <strong>リリア・チェン</strong> でした。父の死への復讐心から、彼女はヴィクターの飲み物に毒を盛りました。<br/>
+          しかし、ジェームス・ウィルソンはすでに遺言書を書き換えており、マーカス・グレイもまた独自の計画を立てていました。<br/>
+          この船の上では、誰もが何らかの罪を背負っているのです。
         </p>
       </div>
-      <DecoButton onClick={resetGame} variant="outline">Play Again</DecoButton>
+      <DecoButton onClick={resetGame} variant="outline">もう一度プレイする</DecoButton>
     </div>
   );
 }

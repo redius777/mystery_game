@@ -16,9 +16,9 @@ const plugins = [
     registerType: 'autoUpdate',
     includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
     manifest: {
-      name: 'Murder on the Queen Artemis',
-      short_name: 'Queen Artemis',
-      description: 'A 50-minute murder mystery game set on a luxury ocean liner.',
+      name: '豪華客船での密室殺人',
+      short_name: '密室殺人',
+      description: '豪華客船を舞台にした50分完結のマーダーミステリーゲーム。',
       theme_color: '#0a0a0a',
       background_color: '#0a0a0a',
       display: 'standalone',
